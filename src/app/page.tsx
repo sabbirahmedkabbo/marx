@@ -216,18 +216,25 @@ export default function HomePage() {
 
   return (
     <div className="relative overflow-hidden">
+      {/* Global Dynamic Background Bottle */}
+      <motion.div 
+        style={{ y: bottleY, rotate: bottleRotate }}
+        className="fixed top-0 right-[-15vw] w-[80vw] max-w-[900px] opacity-20 pointer-events-none z-50"
+      >
+        <motion.img 
+          src="/bgbottleimage.png" 
+          alt="" 
+          className="w-full h-auto object-contain drop-shadow-2xl"
+          animate={{ y: [0, -40, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </motion.div>
+
       {/* ============ HERO SECTION ============ */}
       <motion.section
         style={{ opacity: heroOpacity, scale: heroScale }}
         className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-[#1B4332] via-[#2F7D32] to-[#1B4332]"
       >
-        {/* Dynamic Background Bottle */}
-        <motion.div 
-          style={{ y: bottleY, rotate: bottleRotate }}
-          className="absolute top-0 right-[-10%] w-[80%] max-w-[800px] opacity-40 pointer-events-none z-0 mix-blend-screen"
-        >
-          <img src="/bgbottle.svg" alt="" className="w-full h-auto object-contain" />
-        </motion.div>
 
         {/* Animated background orbs */}
         <div className="absolute inset-0 z-0">
