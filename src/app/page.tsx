@@ -177,6 +177,8 @@ export default function HomePage() {
   const { scrollYProgress } = useScroll();
   const heroOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.95]);
+  const bottleY = useTransform(scrollYProgress, [0, 1], ["0vh", "30vh"]);
+  const bottleRotate = useTransform(scrollYProgress, [0, 1], [-5, 15]);
 
   const features = [
     {
@@ -214,6 +216,14 @@ export default function HomePage() {
 
   return (
     <div className="relative overflow-hidden">
+      {/* Dynamic Background Bottle */}
+      <motion.div 
+        style={{ y: bottleY, rotate: bottleRotate }}
+        className="fixed top-[15vh] right-[-10vw] w-[60vw] max-w-[600px] opacity-[0.08] pointer-events-none z-0"
+      >
+        <img src="/bgbottle.svg" alt="" className="w-full h-auto object-contain drop-shadow-2xl" />
+      </motion.div>
+
       {/* ============ HERO SECTION ============ */}
       <motion.section
         style={{ opacity: heroOpacity, scale: heroScale }}
