@@ -524,52 +524,57 @@ export default function HomePage() {
             </h2>
           </motion.div>
 
-          {/* Horizontal scrolling cards */}
-          <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide" style={{ scrollbarWidth: "none" }}>
-            {recentParticipants.map((p, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                whileHover={{ y: -6 }}
-                className="min-w-[280px] snap-start flex-shrink-0 overflow-hidden rounded-2xl bg-white/70 backdrop-blur-xl border border-white/20 shadow-lg transition-all duration-500"
-              >
-                {/* Video placeholder */}
-                <div className="relative h-40 bg-gradient-to-br from-[#C8E6B9] to-[#5AAE4A]/30 flex items-center justify-center">
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    className="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 shadow-lg cursor-pointer"
-                  >
-                    <Play className="h-6 w-6 text-[#2F7D32] ml-1" />
-                  </motion.div>
-                  <div className="absolute bottom-3 left-3 rounded-full bg-black/40 px-3 py-1 text-xs text-white backdrop-blur-sm">
-                    0:20
-                  </div>
-                </div>
-
-                {/* Info */}
-                <div className="p-5">
-                  <div className="flex items-center gap-3 mb-3">
-                    <img
-                      src={p.avatar}
-                      alt={p.name}
-                      className="h-10 w-10 rounded-full bg-[#C8E6B9]"
-                    />
-                    <div>
-                      <div className="text-sm font-semibold text-[#1B4332]">{p.name}</div>
-                      <div className="text-xs text-[#1B4332]/50">{p.city}</div>
+          {/* Auto-scrolling horizontal marquee */}
+          <div className="relative w-full overflow-hidden pb-4">
+            <style>{`
+              @keyframes marquee {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+              }
+            `}</style>
+            <div 
+              className="flex w-max gap-6 hover:[animation-play-state:paused]"
+              style={{ animation: 'marquee 30s linear infinite' }}
+            >
+              {[...recentParticipants, ...recentParticipants].map((p, i) => (
+                <div
+                  key={i}
+                  className="min-w-[280px] flex-shrink-0 overflow-hidden rounded-2xl bg-white/70 backdrop-blur-xl border border-white/20 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#5AAE4A]/20"
+                >
+                  {/* Video placeholder */}
+                  <div className="relative h-40 bg-gradient-to-br from-[#C8E6B9] to-[#5AAE4A]/30 flex items-center justify-center group cursor-pointer">
+                    <div
+                      className="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 shadow-lg transition-transform group-hover:scale-110"
+                    >
+                      <Play className="h-6 w-6 text-[#2F7D32] ml-1" />
+                    </div>
+                    <div className="absolute bottom-3 left-3 rounded-full bg-black/40 px-3 py-1 text-xs text-white backdrop-blur-sm">
+                      0:20
                     </div>
                   </div>
-                  <p className="text-sm text-[#1B4332]/70 mb-3">{p.videoTitle}</p>
-                  <div className="flex items-center gap-1 text-sm text-[#1B4332]/50">
-                    <Heart className="h-4 w-4 text-red-400" />
-                    <span>{p.likes.toLocaleString()}</span>
+
+                  {/* Info */}
+                  <div className="p-5">
+                    <div className="flex items-center gap-3 mb-3">
+                      <img
+                        src={p.avatar}
+                        alt={p.name}
+                        className="h-10 w-10 rounded-full bg-[#C8E6B9]"
+                      />
+                      <div>
+                        <div className="text-sm font-semibold text-[#1B4332]">{p.name}</div>
+                        <div className="text-xs text-[#1B4332]/50">{p.city}</div>
+                      </div>
+                    </div>
+                    <p className="text-sm text-[#1B4332]/70 mb-3">{p.videoTitle}</p>
+                    <div className="flex items-center gap-1 text-sm text-[#1B4332]/50">
+                      <Heart className="h-4 w-4 text-red-400" />
+                      <span>{p.likes.toLocaleString()}</span>
+                    </div>
                   </div>
                 </div>
-              </motion.div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -592,10 +597,10 @@ export default function HomePage() {
           <p className="mx-auto mt-4 max-w-xl text-lg text-white/70">
             Join thousands of women who are taking 20 minutes for themselves. Your hair deserves it.
           </p>
-          <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+          <div className="mt-10 flex flex-col items-stretch gap-4 w-full sm:w-auto sm:flex-row sm:justify-center px-2 sm:px-0">
             <Link
               href="/challenge"
-              className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#FFD54F] to-[#FFC107] px-8 py-4 text-base font-bold text-[#1B4332] shadow-xl transition-all hover:shadow-2xl hover:scale-105"
+              className="group inline-flex items-center justify-center w-full sm:w-auto gap-2 rounded-full bg-gradient-to-r from-[#FFD54F] to-[#FFC107] px-8 py-4 text-base font-bold text-[#1B4332] shadow-xl transition-all hover:shadow-2xl hover:scale-105"
             >
               Start Your Challenge
               <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
