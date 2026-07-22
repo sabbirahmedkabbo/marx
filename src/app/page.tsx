@@ -177,8 +177,10 @@ export default function HomePage() {
   const { scrollYProgress } = useScroll();
   const heroOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.95]);
-  const bottleY = useTransform(scrollYProgress, [0, 1], ["0vh", "30vh"]);
+  const bottleY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const bottleRotate = useTransform(scrollYProgress, [0, 1], [-5, 15]);
+  const bottleScale = useTransform(scrollYProgress, [0, 0.4], [1, 0.4]);
+  const bottleOpacity = useTransform(scrollYProgress, [0, 0.3], [0.3, 0]);
 
   const features = [
     {
@@ -204,7 +206,6 @@ export default function HomePage() {
     { icon: <Camera className="h-6 w-6" />, title: "Post Your Video", desc: "Record your routine and share with #GoIn20" },
     { icon: <Gift className="h-6 w-6" />, title: "Win Rewards", desc: "Earn points, climb the leaderboard, claim prizes" },
   ];
-
   const recentParticipants = [
     { name: "Ayesha Rahman", city: "Dhaka", likes: 2847, avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=Ayesha&backgroundColor=c8e6b9", videoTitle: "My 20-Min Morning Routine ✨" },
     { name: "Nusrat Jahan", city: "Chattogram", likes: 2134, avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=Nusrat&backgroundColor=c8e6b9", videoTitle: "Vatika Changed My Hair Game 💚" },
@@ -218,11 +219,11 @@ export default function HomePage() {
     <div className="relative overflow-hidden">
       {/* Global Dynamic Background Bottle */}
       <motion.div 
-        style={{ y: bottleY, rotate: bottleRotate }}
-        className="fixed top-0 right-[-15vw] w-[80vw] max-w-[900px] opacity-20 pointer-events-none z-50"
+        style={{ y: bottleY, rotate: bottleRotate, scale: bottleScale, opacity: bottleOpacity }}
+        className="fixed top-0 right-[-15%] w-[120%] sm:w-[80vw] max-w-[900px] pointer-events-none z-50"
       >
         <motion.img 
-          src="/bgbottleimage.png" 
+          src="/bgb.png" 
           alt="" 
           className="w-full h-auto object-contain drop-shadow-2xl"
           animate={{ y: [0, -40, 0] }}
@@ -304,18 +305,18 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1 }}
-            className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
+            className="mt-10 flex flex-col items-stretch gap-4 w-full sm:w-auto sm:flex-row sm:justify-center px-2 sm:px-0"
           >
             <Link
               href="/challenge"
-              className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#FFD54F] to-[#FFC107] px-8 py-4 text-base font-bold text-[#1B4332] shadow-xl shadow-amber-400/25 transition-all hover:shadow-2xl hover:shadow-amber-400/40 hover:scale-105"
+              className="group inline-flex items-center justify-center w-full sm:w-auto gap-2 rounded-full bg-gradient-to-r from-[#FFD54F] to-[#FFC107] px-8 py-4 text-base font-bold text-[#1B4332] shadow-xl shadow-amber-400/25 transition-all hover:shadow-2xl hover:shadow-amber-400/40 hover:scale-105"
             >
               <Play className="h-5 w-5 transition-transform group-hover:scale-110" />
               Join the Challenge
             </Link>
             <Link
               href="/rewards"
-              className="inline-flex items-center gap-2 rounded-full border-2 border-white/30 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/10 hover:border-white/50"
+              className="inline-flex items-center justify-center w-full sm:w-auto gap-2 rounded-full border-2 border-white/30 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/10 hover:border-white/50"
             >
               Explore Rewards
               <ArrowRight className="h-5 w-5" />
