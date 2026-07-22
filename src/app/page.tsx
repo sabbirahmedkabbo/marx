@@ -177,10 +177,10 @@ export default function HomePage() {
   const { scrollYProgress } = useScroll();
   const heroOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.95]);
-  const bottleY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const bottleY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const bottleRotate = useTransform(scrollYProgress, [0, 1], [-5, 15]);
-  const bottleScale = useTransform(scrollYProgress, [0, 0.4], [1, 0.4]);
-  const bottleOpacity = useTransform(scrollYProgress, [0, 0.3], [0.3, 0]);
+  const bottleScale = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const bottleOpacity = useTransform(scrollYProgress, [0, 0.7], [0.4, 0]);
 
   const features = [
     {
@@ -206,6 +206,7 @@ export default function HomePage() {
     { icon: <Camera className="h-6 w-6" />, title: "Post Your Video", desc: "Record your routine and share with #GoIn20" },
     { icon: <Gift className="h-6 w-6" />, title: "Win Rewards", desc: "Earn points, climb the leaderboard, claim prizes" },
   ];
+
   const recentParticipants = [
     { name: "Ayesha Rahman", city: "Dhaka", likes: 2847, avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=Ayesha&backgroundColor=c8e6b9", videoTitle: "My 20-Min Morning Routine ✨" },
     { name: "Nusrat Jahan", city: "Chattogram", likes: 2134, avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=Nusrat&backgroundColor=c8e6b9", videoTitle: "Vatika Changed My Hair Game 💚" },
@@ -220,7 +221,7 @@ export default function HomePage() {
       {/* Global Dynamic Background Bottle */}
       <motion.div 
         style={{ y: bottleY, rotate: bottleRotate, scale: bottleScale, opacity: bottleOpacity }}
-        className="fixed top-0 right-[-15%] w-[120%] sm:w-[80vw] max-w-[900px] pointer-events-none z-50"
+        className="fixed top-0 right-[-15%] w-[120%] sm:w-[80vw] max-w-[900px] pointer-events-none z-50 origin-top-right"
       >
         <motion.img 
           src="/bgb.png" 
