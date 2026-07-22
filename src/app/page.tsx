@@ -180,7 +180,7 @@ export default function HomePage() {
   const bottleY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const bottleRotate = useTransform(scrollYProgress, [0, 1], [-5, 15]);
   const bottleScale = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-  const bottleOpacity = useTransform(scrollYProgress, [0, 0.7], [0.4, 0]);
+  const bottleOpacity = useTransform(scrollYProgress, [0, 0.7], [0.2, 0]);
 
   const features = [
     {
@@ -221,7 +221,7 @@ export default function HomePage() {
       {/* Global Dynamic Background Bottle */}
       <motion.div 
         style={{ y: bottleY, rotate: bottleRotate, scale: bottleScale, opacity: bottleOpacity }}
-        className="fixed top-0 right-[-15%] w-[120%] sm:w-[80vw] max-w-[900px] pointer-events-none z-50 origin-top-right"
+        className="fixed top-[5%] right-[-30%] w-[90%] sm:top-0 sm:right-[-15%] sm:w-[80vw] max-w-[900px] pointer-events-none z-50 origin-top-right mix-blend-luminosity sm:mix-blend-normal"
       >
         <motion.img 
           src="/bgb.png" 
